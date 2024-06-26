@@ -1,0 +1,42 @@
+<div class="container">
+    <form role="form">
+        <script cam-script type="text/form-script">
+            $scope.options.hideCompleteButton = true;
+            inject([ '$rootScope', '$scope', 'Notifications', function($rootScope, $scope, Notifications) {
+                $scope.doComplete = function(pumpumpum) {
+                    if(camForm.variableManager.variable('supportGateway') == null){
+                        camForm.variableManager.createVariable({
+                              name: 'supportGateway',
+                              type: 'String',
+                              value: pumpumpum
+                        });
+                    }
+                    else{
+                        camForm.variableManager.variable('supportGateway').value = pumpumpum;
+                    }
+                    $scope.complete(Notifications.addMessage({
+                            status: 'Successfully Submitted',
+                            message: 'Form has been successfully submitted',
+                            scope: $scope
+                        }));
+                }
+            }]);
+        </script>
+        <div class="form-group row">
+            <div class="form-group col-md-2">
+                <label class="control-label">Объект</label>
+            </div>
+            <div class="form-group col-md-2">
+                <input type="text"
+                       cam-variable-name="AccountCreateObject"
+                       cam-variable-type="String"
+                       readonly
+                       class="form-control" />
+            </div>
+        </div>
+        <div class="row">
+            <button class="btn btn-danger" ng-click='doComplete("Exit")'>Завершить процесс</button>
+            <button class="btn btn-warning" ng-click='doComplete("Repeat")'>Повторить</button>
+        </div>
+    </form>
+</div>
