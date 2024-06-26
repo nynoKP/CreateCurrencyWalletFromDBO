@@ -51,6 +51,7 @@ namespace CreateCurrencyWalletFromDBO.Workers
                     }
                 }).List();
                 var processCount = processList.Where(c=>c.Id != externalTask.ProcessInstanceId).Count();
+
                 return await Task.FromResult<IExecutionResult>(new CompleteResult()
                 {
                     Variables = new Dictionary<string, VariableBase>
