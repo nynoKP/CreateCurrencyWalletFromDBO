@@ -45,7 +45,7 @@
       <bpmn:incoming>Flow_0v8dexu</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_1258drb" name="Готово" sourceRef="Gateway_0264mt9" targetRef="Activity_0wzsl7z">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${IsSuccess==true}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${IsSuccess==true &amp;&amp; IsAccountCreated==true}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:serviceTask id="Activity_0bq2747" name="Проверка уникальности" camunda:type="external" camunda:topic="CheckClientUniqueness">
       <bpmn:incoming>Flow_1m1svou</bpmn:incoming>
@@ -104,7 +104,7 @@
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${supportGateway == 'Repeat'}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_1gdfrc8" sourceRef="Gateway_0264mt9" targetRef="Activity_0m3po0w">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${IsSuccess==false}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${IsSuccess==false || IsAccountCreated==false}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_0v8dexu" sourceRef="Activity_0wzsl7z" targetRef="Event_0eap9zo" />
     <bpmn:serviceTask id="Activity_0wzsl7z" name="Отправить результат" camunda:type="external" camunda:topic="SendResult">

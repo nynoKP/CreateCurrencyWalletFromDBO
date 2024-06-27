@@ -50,7 +50,7 @@ namespace CreateCurrencyWalletFromDBO.Workers
                     {
                         ["AccountCreateObject"] = JsonVariable.Create(accCreateResult),
                         ["IsSuccess"] = new BooleanVariable(accCreateResult.IsSuccess),
-                        ["IsAccountCreated"] = new BooleanVariable(accCreateResult.IsSuccess && accCreateResult.Object.result.status == "SUCCESS")
+                        ["IsAccountCreated"] = new BooleanVariable(accCreateResult.IsSuccess && accCreateResult?.Object?.result?.status == "SUCCESS")
                     }
                 });
             }
