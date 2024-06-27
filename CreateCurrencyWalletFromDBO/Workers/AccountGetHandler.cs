@@ -43,7 +43,7 @@ namespace CreateCurrencyWalletFromDBO.Workers
                 {
                     Variables = new Dictionary<string, VariableBase>
                     {
-                        ["IsSuccess"] = new BooleanVariable(!accGetResult.IsSuccess),
+                        ["IsSuccess"] = new BooleanVariable(accGetResult.IsSuccess),
                         ["IsClientHasWallet"] = new BooleanVariable(accGetResult.IsSuccess && accGetResult.Object.result.status == "SUCCESS" && accGetResult.Object.result.data.Any()),
                         ["AccountGetObject"] = JsonVariable.Create(accGetResult)
                     }
