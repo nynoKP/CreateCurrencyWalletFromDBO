@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  createcurrencywalletfromdbo:
+    image: ${DOCKER_REGISTRY-}createcurrencywalletfromdbo
+    build:
+      context: .
+      dockerfile: CreateCurrencyWalletFromDBO/Dockerfile
