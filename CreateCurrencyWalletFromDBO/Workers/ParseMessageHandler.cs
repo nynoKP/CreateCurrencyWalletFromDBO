@@ -38,7 +38,8 @@ namespace CreateCurrencyWalletFromDBO.Workers
                             ["Pinfl"] = new StringVariable(messageObject.MessageContent.client_info.pinfl),
                             ["Method"] = new StringVariable(messageObject.Method),
                             ["Currency"] = new StringVariable(messageObject.MessageContent.products.currency),
-                            ["NciClientId"] = new StringVariable(messageObject.MessageContent.client_info.nci_number)
+                            ["NciClientId"] = new StringVariable(messageObject.MessageContent.client_info.nci_number),
+                            ["UniqueId"] = new StringVariable(messageObject.MessageContent.system.unique_id)
                         }
                     });
                 }

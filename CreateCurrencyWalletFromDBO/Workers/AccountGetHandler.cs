@@ -41,11 +41,10 @@ namespace CreateCurrencyWalletFromDBO.Workers
                 var accGetResult = await AnorHubService.Instance.NciAccountGet(accGetRequest);
                 return await Task.FromResult<IExecutionResult>(new CompleteResult()
                 {
-                    //тут криво и временно
                     Variables = new Dictionary<string, VariableBase>
                     {
-                        ["IsSuccess"] = new BooleanVariable(!accGetResult.IsSuccess && accGetResult.Object.result.status == "SUCCESS"),
-                        ["IsClientHasWallet"] = new BooleanVariable(/*accGetResult.IsSuccess && accGetResult.Object.result.status == "SUCCESS" && accGetResult.Object.result.data.Any()*/ false),
+                        ["IsSuccess"] = new BooleanVariable(!accGetResult.IsSuccess),
+                        ["IsClientHasWallet"] = new BooleanVariable(accGetResult.IsSuccess && accGetResult.Object.result.status == "SUCCESS" && accGetResult.Object.result.data.Any()),
                         ["AccountGetObject"] = JsonVariable.Create(accGetResult)
                     }
                 });

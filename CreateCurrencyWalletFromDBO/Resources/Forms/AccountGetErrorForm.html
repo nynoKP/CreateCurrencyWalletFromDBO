@@ -1,6 +1,24 @@
 ﻿<div class="container">
     <form role="form">
         <script cam-script type="text/form-script">
+            camForm.on('form-loaded', function() {
+                camForm.variableManager.fetchVariable('AccountGetObject');
+    
+            });
+
+            camForm.on('variables-fetched', function() {
+                var jsonValue = camForm.variableManager.variableValue('AccountGetObject');
+                if(jsonValue != null){
+                    try{
+                        $scope.AccountGetObject = jsonValue;
+                    }
+                    catch(e){
+                        $scope.AccountGetObject = null;
+                    }
+                }
+                else $scope.AccountGetObject = null;
+            });
+
             $scope.options.hideCompleteButton = true;
             inject([ '$rootScope', '$scope', 'Notifications', function($rootScope, $scope, Notifications) {
                 $scope.doComplete = function(pumpumpum) {
@@ -22,15 +40,45 @@
                 }
             }]);
         </script>
+
         <div class="form-group row">
-            <div class="form-group col-md-2">
-                <label class="control-label">Объект</label>
-            </div>
-            <div class="form-group col-md-2">
-                <textarea rows="30" cols="100"
-                          cam-variable-name="AccountCreateObject"
+            <div class="form-group col-md-4">
+                <label class="control-label">JsonRequest</label>
+                <textarea rows="20" cols="50"
+                          ng-model="AccountGetObject.RequestData.Request"
                           cam-variable-type="String"
-                          readonly>
+                          readonly
+                          class="form-control">
+                </textarea>
+            </div>
+            <div class="form-group col-md-4">
+                <label class="control-label">JsonResponse</label>
+                <textarea rows="20" cols="50"
+                          ng-model="AccountGetObject.Response"
+                          cam-variable-type="String"
+                          readonly
+                          class="form-control">
+                </textarea>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="form-group col-md-4">
+                <label class="control-label">IsSuccess</label>
+                <input type="checkbox"
+                          ng-model="AccountGetObject.IsSuccess"
+                          cam-variable-type="Boolean"
+                          disabled
+                          class="form-control"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="form-group col-md-4">
+                <label class="control-label">Exception</label>
+                <textarea rows="20" cols="50"
+                          ng-model="AccountGetObject.Exception"
+                          cam-variable-type="String"
+                          readonly
+                          class="form-control">
                 </textarea>
             </div>
         </div>
