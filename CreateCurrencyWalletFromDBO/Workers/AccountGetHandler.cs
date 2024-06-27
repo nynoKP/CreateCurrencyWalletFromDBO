@@ -29,7 +29,7 @@ namespace CreateCurrencyWalletFromDBO.Workers
                     method = "nci.account.get",
                     @params = new Extensions.AnorHubModels.NciAccountGet.Params()
                     {
-                        agentRequestId = new Guid().ToString(),
+                        agentRequestId = Guid.NewGuid().ToString(),
                         account = new Extensions.AnorHubModels.NciAccountGet.Account
                         {
                             clientId = externalTask.Variables.GetValue<string>("NciClientId") ?? "",

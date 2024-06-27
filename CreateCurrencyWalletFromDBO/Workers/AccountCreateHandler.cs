@@ -29,7 +29,7 @@ namespace CreateCurrencyWalletFromDBO.Workers
                     method = "nci.account.create",
                     @params = new Extensions.AnorHubModels.NciAccountCreate.Params()
                     {
-                        agentRequestId = new Guid().ToString(),
+                        agentRequestId = Guid.NewGuid().ToString(),
                         account = new Extensions.AnorHubModels.NciAccountCreate.Account
                         {
                             accBal = "22616",
